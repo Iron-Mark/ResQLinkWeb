@@ -1,6 +1,6 @@
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
-import { ArrowRight, Zap, Shield, Globe } from "lucide-react";
+import { ArrowRight, Download, Zap, Shield, Globe } from "lucide-react";
 
 export function HeroSection() {
   return (
@@ -36,13 +36,13 @@ export function HeroSection() {
               size="lg"
               onClick={() =>
                 document
-                  .getElementById("waitlist")
+                  .getElementById("download")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
               className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white shadow-2xl hover:shadow-red-500/25 transition-all duration-300 px-8 py-4 text-lg rounded-2xl"
             >
-              Join Waitlist
-              <ArrowRight className="h-5 w-5 ml-2" />
+              Download App
+              <Download className="h-5 w-5 ml-2" />
             </Button>
           </div>
 

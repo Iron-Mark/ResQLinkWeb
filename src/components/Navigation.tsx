@@ -69,10 +69,10 @@ export function Navigation() {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#e0eaff] group-hover:w-full transition-all duration-300"></span>
             </a>
             <a
-              href="#waitlist"
+              href="#download"
               className="text-[#fefdf5] hover:text-[#e0eaff] transition-all duration-300 relative group"
             >
-              Join Waitlist
+              Download App
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#e0eaff] group-hover:w-full transition-all duration-300"></span>
             </a>
           </div>
@@ -144,10 +144,10 @@ export function Navigation() {
               SDG Impact
             </a>
             <a
-              href="#waitlist"
+              href="#download"
               className="block text-[#fefdf5] hover:text-[#e0eaff] py-2 transition-colors duration-300"
             >
-              Join Waitlist
+              Download App
             </a>
 
             <div className="pt-4 border-t border-[#e0eaff]/10">
