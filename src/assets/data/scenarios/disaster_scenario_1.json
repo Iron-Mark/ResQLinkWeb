@@ -1,0 +1,175 @@
+{
+  "id": "scenario-typhoon-luzon-2026",
+  "name": "Typhoon Luzon Response",
+  "description": "Multi-city typhoon response simulation covering Metro Manila and surrounding provinces.",
+  "durationSeconds": 300,
+  "initialKpis": {
+    "ongoingMissions": 12,
+    "activeResponders": 38,
+    "pendingCases": 7,
+    "resolvedToday": 4
+  },
+  "incidents": [
+    {
+      "id": "INC-001",
+      "type": "Flood",
+      "severity": "Critical",
+      "location": "Marikina City",
+      "lat": 14.6507,
+      "lng": 121.1029,
+      "status": "Active",
+      "responders": 8,
+      "spawnAtSecond": 0
+    },
+    {
+      "id": "INC-002",
+      "type": "Landslide",
+      "severity": "High",
+      "location": "Baguio City",
+      "lat": 16.4023,
+      "lng": 120.5960,
+      "status": "Responding",
+      "responders": 12,
+      "spawnAtSecond": 0
+    },
+    {
+      "id": "INC-003",
+      "type": "Fire",
+      "severity": "Medium",
+      "location": "Quezon City",
+      "lat": 14.6760,
+      "lng": 121.0437,
+      "status": "Contained",
+      "responders": 6,
+      "spawnAtSecond": 0
+    },
+    {
+      "id": "INC-004",
+      "type": "Structural Collapse",
+      "severity": "Critical",
+      "location": "Pasig City",
+      "lat": 14.5764,
+      "lng": 121.0851,
+      "status": "Active",
+      "responders": 0,
+      "spawnAtSecond": 30
+    },
+    {
+      "id": "INC-005",
+      "type": "Road Obstruction",
+      "severity": "Medium",
+      "location": "Antipolo City",
+      "lat": 14.5865,
+      "lng": 121.1761,
+      "status": "Active",
+      "responders": 0,
+      "spawnAtSecond": 60
+    },
+    {
+      "id": "INC-006",
+      "type": "Medical Emergency",
+      "severity": "High",
+      "location": "Mandaluyong",
+      "lat": 14.5794,
+      "lng": 121.0359,
+      "status": "Responding",
+      "responders": 3,
+      "spawnAtSecond": 90
+    },
+    {
+      "id": "INC-007",
+      "type": "Evacuation Request",
+      "severity": "High",
+      "location": "Cainta, Rizal",
+      "lat": 14.5800,
+      "lng": 121.1200,
+      "status": "Active",
+      "responders": 0,
+      "spawnAtSecond": 120
+    },
+    {
+      "id": "INC-008",
+      "type": "Power Outage",
+      "severity": "Medium",
+      "location": "San Juan City",
+      "lat": 14.5995,
+      "lng": 121.0266,
+      "status": "Active",
+      "responders": 2,
+      "spawnAtSecond": 150
+    },
+    {
+      "id": "INC-009",
+      "type": "Flood",
+      "severity": "Critical",
+      "location": "Navotas City",
+      "lat": 14.6667,
+      "lng": 120.9417,
+      "status": "Active",
+      "responders": 0,
+      "spawnAtSecond": 180
+    },
+    {
+      "id": "INC-010",
+      "type": "Search & Rescue",
+      "severity": "Critical",
+      "location": "Montalban, Rizal",
+      "lat": 14.7412,
+      "lng": 121.1500,
+      "status": "Active",
+      "responders": 0,
+      "spawnAtSecond": 210
+    }
+  ],
+  "rescuers": [
+    {
+      "id": "RSC-001",
+      "name": "Team Alpha",
+      "waypoints": [
+        { "lat": 14.6507, "lng": 121.1029, "atSecond": 0 },
+        { "lat": 14.6350, "lng": 121.0800, "atSecond": 60 },
+        { "lat": 14.6200, "lng": 121.0600, "atSecond": 120 }
+      ]
+    },
+    {
+      "id": "RSC-002",
+      "name": "Team Bravo",
+      "waypoints": [
+        { "lat": 14.5764, "lng": 121.0851, "atSecond": 30 },
+        { "lat": 14.5900, "lng": 121.0700, "atSecond": 90 },
+        { "lat": 14.5800, "lng": 121.0500, "atSecond": 150 }
+      ]
+    },
+    {
+      "id": "RSC-003",
+      "name": "Team Charlie",
+      "waypoints": [
+        { "lat": 14.6760, "lng": 121.0437, "atSecond": 0 },
+        { "lat": 14.6600, "lng": 121.0600, "atSecond": 80 },
+        { "lat": 14.6667, "lng": 120.9417, "atSecond": 200 }
+      ]
+    }
+  ],
+  "events": [
+    { "atSecond": 30,  "type": "incident_spawn",   "incidentId": "INC-004" },
+    { "atSecond": 60,  "type": "incident_spawn",   "incidentId": "INC-005" },
+    { "atSecond": 75,  "type": "status_change",    "incidentId": "INC-003", "newStatus": "Resolved" },
+    { "atSecond": 90,  "type": "incident_spawn",   "incidentId": "INC-006" },
+    { "atSecond": 100, "type": "responder_assign",  "incidentId": "INC-004", "responderId": "RSC-002", "responderCount": 5 },
+    { "atSecond": 120, "type": "incident_spawn",   "incidentId": "INC-007" },
+    { "atSecond": 150, "type": "incident_spawn",   "incidentId": "INC-008" },
+    { "atSecond": 160, "type": "status_change",    "incidentId": "INC-001", "newStatus": "Responding" },
+    { "atSecond": 180, "type": "incident_spawn",   "incidentId": "INC-009" },
+    { "atSecond": 200, "type": "status_change",    "incidentId": "INC-002", "newStatus": "Contained" },
+    { "atSecond": 210, "type": "incident_spawn",   "incidentId": "INC-010" },
+    { "atSecond": 240, "type": "responder_assign",  "incidentId": "INC-009", "responderId": "RSC-003", "responderCount": 7 },
+    { "atSecond": 270, "type": "status_change",    "incidentId": "INC-005", "newStatus": "Resolved" },
+    { "atSecond": 290, "type": "status_change",    "incidentId": "INC-006", "newStatus": "Contained" }
+  ],
+  "resources": [
+    { "name": "Rescue Teams",        "available": 24, "deployed": 16, "total": 40 },
+    { "name": "Medical Units",        "available": 8,  "deployed": 4,  "total": 12 },
+    { "name": "Supply Trucks",        "available": 15, "deployed": 9,  "total": 24 },
+    { "name": "Evacuation Centers",   "available": 12, "deployed": 8,  "total": 20 }
+  ]
+}

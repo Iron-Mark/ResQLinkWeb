@@ -3,98 +3,123 @@ import { Badge } from "./ui/badge";
 import {
   Menu,
   X,
-  AlertTriangle,
+  FacebookIcon,
   Users,
+  AlertTriangle,
   Building2,
   Phone,
-  Facebook,
-  FacebookIcon,
+  FlaskConical,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import resqLinkLogo from '../assets/logos/resqlink-android-icon-adaptive.png';
+import { useDemoMode } from "../context/DemoModeContext";
 
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
+  const { isDemoActive, toggleDemo } = useDemoMode();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["hero", "features", "platforms", "sdg", "waitlist"];
+      const current = sections.find((section) => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      if (current) setActiveSection(current);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const navLinks = [
+    { href: "#hero", label: "Home", id: "hero" },
+    { href: "#features", label: "Features", id: "features" },
+    { href: "#platforms", label: "Platforms", id: "platforms" },
+    { href: "#sdg", label: "SDG Impact", id: "sdg" },
+    { href: "#waitlist", label: "Join Waitlist", id: "waitlist" },
+  ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-md">
-      <div className="w-screen mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a08]/80 backdrop-blur-xl border-b border-[#e0eaff]/5">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <div className="flex items-center gap-3">
-            <img
-              src={resqLinkLogo}
-              alt=""
-              className="h-6 w-6 text-white"
-            />
-            <span className="text-[#fefdf5] font-bold text-xl tracking-tight">
-              ResQLink
-            </span>
-            <Badge
-              variant="secondary"
-              className="text-xs bg-[#e0eaff]/20 text-[#e0eaff] border-[#e0eaff]/30"
-            >
-              BETA
-            </Badge>
+          <div className="flex items-center gap-3 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            <div className="relative">
+              <div className="absolute inset-0 bg-blue-500/20 blur-lg rounded-full group-hover:bg-blue-500/40 transition-all duration-500"></div>
+              <img
+                src={resqLinkLogo}
+                alt=""
+                className="h-8 w-8 relative z-10"
+              />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[#fefdf5] font-bold text-xl tracking-tight leading-none">
+                ResQLink
+              </span>
+              <span className="text-[10px] text-[#e0eaff]/50 font-medium tracking-[0.2em] uppercase mt-1">
+                Emergency Management
+              </span>
+            </div>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            <a
-              href="#hero"
-              className="text-[#fefdf5] hover:text-[#e0eaff] transition-all duration-300 relative group"
-            >
-              Home
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#e0eaff] group-hover:w-full transition-all duration-300"></span>
-            </a>
-            <a
-              href="#features"
-              className="text-[#fefdf5] hover:text-[#e0eaff] transition-all duration-300 relative group"
-            >
-              Features
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#e0eaff] group-hover:w-full transition-all duration-300"></span>
-            </a>
-            <a
-              href="#platforms"
-              className="text-[#fefdf5] hover:text-[#e0eaff] transition-all duration-300 relative group"
-            >
-              Platforms
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#e0eaff] group-hover:w-full transition-all duration-300"></span>
-            </a>
-            <a
-              href="#sdg"
-              className="text-[#fefdf5] hover:text-[#e0eaff] transition-all duration-300 relative group"
-            >
-              SDG Impact
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#e0eaff] group-hover:w-full transition-all duration-300"></span>
-            </a>
-            <a
-              href="#waitlist"
-              className="text-[#fefdf5] hover:text-[#e0eaff] transition-all duration-300 relative group"
-            >
-              Join Waitlist
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#e0eaff] group-hover:w-full transition-all duration-300"></span>
-            </a>
+          <div className="hidden md:flex items-center gap-1">
+            {navLinks.map((link) => (
+              <a
+                key={link.id}
+                href={link.href}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  activeSection === link.id
+                    ? "text-[#e0eaff] bg-[#e0eaff]/10"
+                    : "text-[#fefdf5]/70 hover:text-[#e0eaff] hover:bg-[#e0eaff]/5"
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
 
-          {/* User Type Selector & CTA */}
+          {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <div className="flex gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                className="text-[#fefdf5] bg-black border-[#e0eaff]/30 hover:border-[#e0eaff]/50 transition-all duration-300"
-                onClick={() =>
-                  window.open(
-                    "https://www.facebook.com/resqlink.umak",
-                    "_blank"
-                  )
-                }
-              >
-                <FacebookIcon className="h-4 w-4 mr-1" />
-                Facebook Page
-              </Button>
-            </div>
+            {/* Demo Mode toggle — scroll to dashboard section and activate */}
+            <button
+              onClick={() => {
+                toggleDemo();
+                const el = document.getElementById("dashboard");
+                if (el) el.scrollIntoView({ behavior: "smooth" });
+              }}
+              title={isDemoActive ? "Exit Demo Mode" : "Activate Demo Mode"}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 border ${
+                isDemoActive
+                  ? "border-green-400/60 bg-green-400/10 text-green-300 animate-pulse"
+                  : "border-[#e0eaff]/15 bg-transparent text-[#e0eaff]/30 hover:text-[#e0eaff]/60 hover:border-[#e0eaff]/30"
+              }`}
+            >
+              <FlaskConical className="h-3 w-3" />
+              {isDemoActive ? "DEMO ON" : "Demo"}
+            </button>
+
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-[#fefdf5] bg-transparent border-[#e0eaff]/20 hover:border-[#e0eaff]/50 hover:bg-[#e0eaff]/5 rounded-full px-6"
+              onClick={() =>
+                window.open(
+                  "https://www.facebook.com/resqlink.umak",
+                  "_blank"
+                )
+              }
+            >
+              <FacebookIcon className="h-4 w-4 mr-2 text-blue-400" />
+              Community
+            </Button>
           </div>
 
           {/* Mobile menu button */}

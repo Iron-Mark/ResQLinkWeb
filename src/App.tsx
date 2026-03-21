@@ -6,8 +6,10 @@ import { PlatformOverview } from "./components/PlatformOverview";
 import { SDGSection } from "./components/SDGSection";
 import { WaitlistSection } from "./components/WaitlistSection";
 import AchievementSection from "./components/Achievements";
+import { DashboardPreview } from "./components/DashboardPreview";
 import { useEffect } from "react";
 import { updateSEO, DEFAULT_SEO } from "./utils/seo";
+import { DemoModeProvider } from "./context/DemoModeContext";
 
 export default function App() {
   useEffect(() => {
@@ -15,6 +17,7 @@ export default function App() {
     updateSEO(DEFAULT_SEO.home);
   }, []);
   return (
+    <DemoModeProvider>
     <div className="w-screen overflow-hidden">
       <Navigation />
 
@@ -28,6 +31,9 @@ export default function App() {
 
       {/* AI Triage Flow */}
       <AITriageFlow />
+
+      {/* LGU Command Dashboard Preview with Demo Mode */}
+      <DashboardPreview />
 
       {/* Platform Overview */}
       <section id="platforms">
@@ -169,5 +175,6 @@ export default function App() {
         </div>
       </section>
     </div>
+    </DemoModeProvider>
   );
 }
