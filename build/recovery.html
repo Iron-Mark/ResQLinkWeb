@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ResQLink Password Recovery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --pri-blue-50: #e0eaff;
+        --pri-blue-100: #97b6f7;
+        --pri-blue-200: #3d77f5;
+        --pri-blue-300: #0649db;
+        --pri-blue-500: #0033ad;
+        --pri-blue-600: #00299a;
+        --pri-blue-700: #032277;
+        --pri-blue-900: #051439;
+        --acnt-red-50: #ffe2e0;
+        --acnt-red-100: #f6a6a2;
+        --acnt-red-200: #f2837d;
+        --acnt-red-600: #c21414;
+        --neutral-50: #fefdf5;
+        --neutral-100: #fefcec;
+        --neutral-gray-100: #e1e5ea;
+        --neutral-gray-300: #a7b1c0;
+        --neutral-gray-500: #6a7b95;
+        --neutral-gray-700: #3d495c;
+        --neutral-gray-900: #191f29;
+        --font-display: "Atkinson Hyperlegible", "IBM Plex Sans", "Segoe UI", Arial, sans-serif;
+        --font-body: "IBM Plex Sans", "Segoe UI", Arial, sans-serif;
+        --font-accent: "IBM Plex Sans", "Segoe UI", Arial, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: var(--font-body);
+        color: var(--neutral-gray-900);
+        background:
+          radial-gradient(circle at 14% 12%, rgb(6 73 219 / 18%), transparent 42%),
+          radial-gradient(circle at 88% 18%, rgb(194 20 20 / 12%), transparent 34%),
+          radial-gradient(circle at 76% 86%, rgb(61 119 245 / 14%), transparent 40%),
+          linear-gradient(140deg, var(--pri-blue-50), var(--neutral-100) 55%, #ffffff);
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      body::before,
+      body::after {
+        content: "";
+        position: absolute;
+        width: 360px;
+        height: 360px;
+        border-radius: 999px;
+        filter: blur(56px);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      body::before {
+        top: -120px;
+        left: -140px;
+        background: rgb(0 51 173 / 24%);
+      }
+
+      body::after {
+        right: -140px;
+        bottom: -130px;
+        background: rgb(194 20 20 / 18%);
+      }
+
+      .shell {
+        width: min(580px, 100%);
+        position: relative;
+        z-index: 1;
+      }
+
+      .card {
+        width: 100%;
+        background: #ffffff;
+        border: 1px solid var(--pri-blue-100);
+        border-radius: 22px;
+        padding: 28px 24px 22px;
+        box-shadow:
+          0 12px 28px rgb(6 73 219 / 14%),
+          0 34px 54px rgb(3 34 119 / 12%);
+        backdrop-filter: blur(2px);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        margin-bottom: 16px;
+      }
+
+      .brand-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .brand-mark-wrap {
+        position: relative;
+        width: 44px;
+        height: 44px;
+      }
+
+      .brand-mark-wrap::before {
+        content: "";
+        position: absolute;
+        inset: -7px;
+        border-radius: 16px;
+        background: radial-gradient(circle at 30% 30%, rgb(61 119 245 / 32%), transparent 70%);
+        z-index: 0;
+      }
+
+      .brand-mark {
+        position: relative;
+        z-index: 1;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        font-family: var(--font-accent);
+        font-size: 14px;
+        font-weight: 800;
+        color: #ffffff;
+        letter-spacing: 0.08em;
+        background: linear-gradient(145deg, var(--acnt-red-600), var(--pri-blue-500) 64%);
+        box-shadow: 0 10px 20px rgb(3 34 119 / 24%);
+      }
+
+      .brand-name {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: 1.18rem;
+        color: var(--pri-blue-700);
+        font-weight: 800;
+      }
+
+      .brand-sub {
+        margin: 2px 0 0;
+        font-size: 0.82rem;
+        color: var(--neutral-gray-500);
+        letter-spacing: 0.02em;
+        font-family: var(--font-body);
+      }
+
+      .verification-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--pri-blue-100);
+        background: linear-gradient(180deg, #ffffff, var(--pri-blue-50));
+        color: var(--pri-blue-700);
+        font-size: 0.75rem;
+        font-family: var(--font-accent);
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+      }
+
+      .verification-tag .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--pri-blue-300);
+        box-shadow: 0 0 0 4px rgb(6 73 219 / 14%);
+      }
+
+      .meta {
+        margin-bottom: 10px;
+      }
+
+      .meta-step {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.75rem;
+        color: var(--neutral-gray-500);
+        font-family: var(--font-accent);
+        font-weight: 600;
+      }
+
+      .meta-step::before {
+        content: "";
+        width: 24px;
+        height: 1px;
+        background: var(--neutral-gray-300);
+      }
+
+      h1 {
+        margin: 0 0 10px;
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        letter-spacing: 0.01em;
+        color: var(--pri-blue-700);
+        font-weight: 700;
+      }
+
+      p {
+        margin: 0 0 16px;
+        font-family: var(--font-body);
+        color: var(--neutral-gray-700);
+        line-height: 1.5;
+      }
+
+      .progress {
+        position: relative;
+        height: 6px;
+        width: 100%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--pri-blue-50), #f4f7ff);
+        overflow: hidden;
+        margin: 0 0 14px;
+        border: 1px solid rgb(151 182 247 / 55%);
+      }
+
+      .progress > span {
+        display: block;
+        height: 100%;
+        width: 56%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--pri-blue-300), var(--pri-blue-500));
+        box-shadow: 0 0 18px rgb(0 51 173 / 35%);
+        animation: progress-slide 1.4s ease-in-out infinite alternate;
+      }
+
+      @keyframes progress-slide {
+        from {
+          transform: translateX(-8%);
+        }
+        to {
+          transform: translateX(8%);
+        }
+      }
+
+      .status {
+        margin: 16px 0;
+        padding: 12px 14px;
+        border-radius: 12px;
+        background: var(--pri-blue-50);
+        border: 1px solid var(--pri-blue-100);
+        color: var(--pri-blue-700);
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .status-indicator {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: var(--pri-blue-300);
+        box-shadow: 0 0 0 5px rgb(6 73 219 / 13%);
+        animation: pulse 1.4s ease-in-out infinite;
+      }
+
+      .status.error {
+        background: var(--acnt-red-50);
+        border-color: var(--acnt-red-200);
+        color: var(--acnt-red-600);
+      }
+
+      .status.error .status-indicator {
+        background: var(--acnt-red-600);
+        box-shadow: 0 0 0 5px rgb(194 20 20 / 13%);
+        animation: none;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgb(6 73 219 / 25%);
+        }
+        100% {
+          box-shadow: 0 0 0 8px rgb(6 73 219 / 0%);
+        }
+      }
+
+      .actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      button,
+      a.button {
+        border: 0;
+        border-radius: 12px;
+        padding: 11px 18px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        font-family: var(--font-accent);
+        letter-spacing: 0.01em;
+        text-decoration: none;
+        cursor: pointer;
+        transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+      }
+
+      button,
+      a.button.primary {
+        background: linear-gradient(135deg, var(--pri-blue-500), var(--pri-blue-600));
+        color: white;
+        box-shadow: 0 8px 18px rgb(0 51 173 / 26%);
+      }
+
+      button:hover,
+      a.button.primary:hover {
+        background: linear-gradient(135deg, var(--pri-blue-600), var(--pri-blue-500));
+        transform: translateY(-1px);
+      }
+
+      .hint {
+        margin-top: 12px;
+        font-size: 0.82rem;
+        color: var(--neutral-gray-500);
+        font-family: var(--font-body);
+      }
+
+      @media (max-width: 560px) {
+        body {
+          padding: 16px;
+        }
+
+        .card {
+          padding: 22px 18px 18px;
+          border-radius: 18px;
+        }
+
+        .brand {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        h1 {
+          font-size: 1.3rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="card" aria-live="polite">
+        <header class="brand">
+          <div class="brand-left">
+            <div class="brand-mark-wrap" aria-hidden="true">
+              <div class="brand-mark">RQL</div>
+            </div>
+            <div>
+              <p class="brand-name">ResQLink</p>
+              <p class="brand-sub">Actionable Intelligence</p>
+            </div>
+          </div>
+          <span class="verification-tag">
+            <span class="dot" aria-hidden="true"></span>
+            Verification
+          </span>
+        </header>
+
+        <div class="meta">
+          <span class="meta-step">Step 2 of 2</span>
+        </div>
+
+        <h1>Verify Recovery Link</h1>
+        <p id="description">
+          Redirecting to the ResQLink app so you can securely set a new password.
+        </p>
+
+        <div class="progress" aria-hidden="true">
+          <span></span>
+        </div>
+
+        <div id="status" class="status">
+          <span class="status-indicator" aria-hidden="true"></span>
+          <span id="statusText">Preparing secure redirect...</span>
+        </div>
+
+        <div class="actions">
+          <a id="openAppBtn" class="button primary" href="#" hidden>Open ResQLink App</a>
+        </div>
+        <p class="hint">If the app does not open automatically, tap the button above.</p>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        const statusEl = document.getElementById("status");
+        const statusTextEl = document.getElementById("statusText");
+        const descriptionEl = document.getElementById("description");
+        const openAppBtn = document.getElementById("openAppBtn");
+
+        const params = new URLSearchParams(window.location.search);
+        const userId = (params.get("userId") || "").trim();
+        const secret = (params.get("secret") || "").trim();
+
+        if (!userId || !secret) {
+          statusEl.classList.add("error");
+          statusTextEl.textContent = "Invalid recovery link. Missing required parameters.";
+          descriptionEl.textContent =
+            "Please request a new password recovery email from the ResQLink app.";
+          return;
+        }
+
+        const appUrl =
+          "resqlink://auth/recovery?userId=" +
+          encodeURIComponent(userId) +
+          "&secret=" +
+          encodeURIComponent(secret);
+
+        openAppBtn.hidden = false;
+        openAppBtn.href = appUrl;
+
+        let redirected = false;
+        const redirectToApp = function () {
+          if (redirected) return;
+          redirected = true;
+          window.location.replace(appUrl);
+        };
+
+        setTimeout(function () {
+          statusTextEl.textContent = "Secure token verified. Opening ResQLink now...";
+          redirectToApp();
+        }, 250);
+
+        openAppBtn.addEventListener("click", function () {
+          statusTextEl.textContent = "Opening ResQLink...";
+        });
+      })();
+    </script>
+  </body>
+</html>
