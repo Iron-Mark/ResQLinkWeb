@@ -239,16 +239,10 @@ export function useScenarioPlayback(isActive: boolean): ScenarioPlaybackState {
     };
   }
 
-  // Format time label on each incident
-  const incidentsWithLabel = incidents.map((i) => ({
-    ...i,
-    _timeLabel: formatAgeLabel(i.ageSeconds),
-  }));
-
   return {
     isActive: true,
     elapsedSeconds,
-    incidents: incidentsWithLabel,
+    incidents,
     kpis,
     resources: scenarioData.resources as ResourceEntry[],
   };

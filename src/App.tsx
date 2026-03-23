@@ -159,7 +159,7 @@ export default function App() {
                 <strong>UMak KALASAG DRRM</strong>.
               </p>
               <div className="flex flex-wrap justify-center gap-6 text-[#e0eaff]/50">
-                <span>© 2025 ResQLink Platform</span>
+                <span>© 2026 ResQLink Platform</span>
                 <span className="hover:text-[#e0eaff]/70 transition-colors duration-300 cursor-pointer">
                   Privacy Policy
                 </span>

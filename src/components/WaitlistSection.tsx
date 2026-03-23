@@ -6,7 +6,6 @@ import {
   CheckCircle,
   ArrowRight,
   Users,
-  Shield,
   Zap,
   Globe,
 } from "lucide-react";
@@ -30,68 +29,14 @@ const benefits = [
 ];
 
 export function WaitlistSection() {
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
-  const handleSubmit = async () => {
-    setIsLoading(true);
-
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    setIsSubmitted(true);
-    setIsLoading(false);
-  };
 
   // called on native form submit to show loading state while allowing
   // the browser to submit the form to the external action URL
-  const onFormSubmit = (e: FormEvent) => {
+  const onFormSubmit = (_e: FormEvent) => {
     // do not call preventDefault() so the browser performs the native submit
     setIsLoading(true);
   };
-
-  if (isSubmitted) {
-    return (
-      <section
-        id="waitlist"
-        className="py-32 bg-gradient-to-br from-[#0a0a08] via-[#161613] to-[#1a1a17] relative"
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-green-500/10 to-blue-500/10 rounded-full blur-3xl opacity-50"></div>
-
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-gradient-to-br from-[#161613]/80 to-[#0a0a08]/60 backdrop-blur-md border border-green-500/30 rounded-3xl p-12 shadow-2xl">
-            <div className="bg-gradient-to-r from-green-500 to-emerald-500 p-4 rounded-full w-20 h-20 mx-auto mb-8 shadow-xl">
-              <CheckCircle className="h-12 w-12 text-white mx-auto" />
-            </div>
-            <h2 className="text-4xl font-bold text-[#fefdf5] mb-6">
-              Welcome to the ResQLink Community!
-            </h2>
-            <p className="text-xl text-[#e0eaff]/80 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Thank you for joining our mission to build resilient disaster
-              response capabilities. We'll keep you updated on our progress and
-              notify you when early access becomes available.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {benefits.map((benefit, index) => (
-                <div
-                  key={index}
-                  className="bg-gradient-to-br from-[#e0eaff]/10 to-[#e0eaff]/5 backdrop-blur-sm border border-[#e0eaff]/20 rounded-2xl p-6"
-                >
-                  <div className="text-green-400 mb-4">{benefit.icon}</div>
-                  <h3 className="text-[#fefdf5] font-bold mb-2">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-[#e0eaff]/70 text-sm">
-                    {benefit.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section
@@ -124,7 +69,7 @@ export function WaitlistSection() {
           <div className="text-center lg:text-left flex flex-col gap-4">
             <form
               method="post"
-              action="http://listmonk.resqlink.org/subscription/form"
+              action="https://listmonk.resqlink.org/subscription/form"
               onSubmit={onFormSubmit}
             >
               <div className="flex flex-col gap-3">
