@@ -1,3 +1,4 @@
+import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
@@ -50,6 +51,7 @@ const getStatusIcon = (status: IncidentStatus | string) => {
 export function DashboardPreview() {
   const { isDemoActive, toggleDemo } = useDemoMode();
   const { incidents, kpis, resources, elapsedSeconds } = useScenarioPlayback(isDemoActive);
+  const [expandedIncidentId, setExpandedIncidentId] = React.useState<string | null>(null);
 
   const criticalCount = incidents.filter(
     (i) => i.severity === "Critical" && i.status !== "Resolved"
@@ -207,15 +209,18 @@ export function DashboardPreview() {
                     Scenario starting… first incidents spawn at T+0:30
                   </div>
                 ) : (
-                  visibleIncidents.map((incident) => (
+                  visibleIncidents.map((incident) => {
+                    const isExpanded = expandedIncidentId === incident.id;
+                    return (
                     <div
                       key={incident.id}
-                      className="bg-[#0a0a08]/60 backdrop-blur-sm border border-[#e0eaff]/10 rounded-xl p-4 hover:border-[#e0eaff]/30 hover:bg-[#0a0a08]/80 transition-all duration-300"
+                      className="bg-[#0a0a08]/60 backdrop-blur-sm border border-[#e0eaff]/10 rounded-xl p-4 hover:border-[#e0eaff]/30 hover:bg-[#0a0a08]/80 transition-all duration-300 cursor-pointer select-none"
                       style={{
                         animation: incident.ageSeconds < 2 && isDemoActive
                           ? "fadeInDown 0.4s ease"
                           : undefined,
                       }}
+                      onClick={() => setExpandedIncidentId(isExpanded ? null : incident.id)}
                     >
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex items-center gap-3">
@@ -234,12 +239,15 @@ export function DashboardPreview() {
                             </p>
                           </div>
                         </div>
-                        <Badge
-                          variant="outline"
-                          className="text-[#e0eaff] border-[#e0eaff]/30 bg-[#e0eaff]/10"
-                        >
-                          {incident.status}
-                        </Badge>
+                        <div className="flex items-center gap-2">
+                          <Badge
+                            variant="outline"
+                            className="text-[#e0eaff] border-[#e0eaff]/30 bg-[#e0eaff]/10"
+                          >
+                            {incident.status}
+                          </Badge>
+                          <span className="text-[#e0eaff]/30 text-xs">{isExpanded ? "▲" : "▼"}</span>
+                        </div>
                       </div>
 
                       <div className="flex items-center justify-between text-sm text-[#e0eaff]/60">
@@ -262,8 +270,44 @@ export function DashboardPreview() {
                             : "unassigned"}
                         </span>
                       </div>
+
+                      {isExpanded && (
+                        <div className="mt-3 pt-3 border-t border-[#e0eaff]/10 space-y-2 text-xs text-[#e0eaff]/50">
+                          <div className="flex justify-between">
+                            <span>Report ID</span>
+                            <span className="text-[#e0eaff]/70 font-mono">{incident.id}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span>Assigned Responders</span>
+                            <span className={incident.responders > 0 ? "text-green-400" : "text-red-400"}>
+                              {incident.responders > 0 ? `${incident.responders} deployed` : "Awaiting assignment"}
+                            </span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span>Priority</span>
+                            <span className={incident.severity === "Critical" ? "text-red-400" : incident.severity === "High" ? "text-orange-400" : "text-yellow-400"}>
+                              {incident.severity === "Critical" ? "Immediate response required" : incident.severity === "High" ? "Urgent — deploy within 15 min" : "Standard response protocol"}
+                            </span>
+                          </div>
+                          <div className="mt-2 flex gap-2">
+                            <button
+                              className="flex-1 py-1.5 rounded-lg bg-[#e0eaff]/5 border border-[#e0eaff]/15 text-[#e0eaff]/50 hover:bg-[#e0eaff]/10 hover:text-[#e0eaff]/80 transition-colors text-xs"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              View on Map
+                            </button>
+                            <button
+                              className="flex-1 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/30 text-blue-400 hover:bg-blue-500/20 transition-colors text-xs"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              Assign Responder
+                            </button>
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  ))
+                    );
+                  })
                 )}
 
                 <Button className="w-full bg-linear-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white mt-4 shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl">
