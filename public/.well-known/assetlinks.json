@@ -1,0 +1,10 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.lumen.resqlink",
+    "sha256_cert_fingerprints": [
+      "56:F5:36:62:A5:17:8A:C2:38:B3:83:B7:EB:28:28:94:05:09:27:9E:54:C1:85:17:C4:93:67:60:CC:52:EE:BD"
+    ]
+  }
+}]
