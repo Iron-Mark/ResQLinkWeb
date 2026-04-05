@@ -79,4 +79,5 @@ src/
 
 VILLAROSA, Jam Emmanuel A. — Project Manager · `jvillarosa.a12240987@umak.edu.ph`
 TENORIO, Rallon Phillip
-CUIZON, M. — Partnerships & LGU Relations · `mcuizon.a12241782@umak.edu.ph`
+CUIZON, Mark — Partnerships & LGU Relations · `mcuizon.a12241782@umak.edu.ph`
+SIAZON, Mark
