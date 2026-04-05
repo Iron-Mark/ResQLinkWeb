@@ -115,9 +115,8 @@ export function Navigation() {
             </Button>
 
             <Button
-              variant="outline"
               size="sm"
-              className="text-[#fefdf5] bg-transparent border-[#e0eaff]/20 hover:border-[#e0eaff]/50 hover:bg-[#e0eaff]/5 rounded-full px-6"
+              className="bg-transparent text-[#e0eaff]/70 border border-[#e0eaff]/20 hover:text-[#e0eaff] hover:border-[#e0eaff]/50 hover:bg-transparent rounded-full px-6 shadow-none cursor-pointer"
               onClick={() =>
                 window.open(
                   "https://www.facebook.com/resqlink.umak",
