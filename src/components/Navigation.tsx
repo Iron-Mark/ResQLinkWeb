@@ -70,20 +70,42 @@ export function Navigation() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.id}
-                href={link.href}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                  activeSection === link.id
-                    ? "text-[#e0eaff] bg-[#e0eaff]/10"
-                    : "text-[#fefdf5]/70 hover:text-[#e0eaff] hover:bg-[#e0eaff]/5"
-                }`}
-              >
-                {link.label}
-              </a>
-            ))}
+          <div className="hidden md:flex items-center gap-8">
+            <a
+              href="#hero"
+              className="text-[#fefdf5] hover:text-[#e0eaff] transition-all duration-300 relative group"
+            >
+              Home
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#e0eaff] group-hover:w-full transition-all duration-300"></span>
+            </a>
+            <a
+              href="#features"
+              className="text-[#fefdf5] hover:text-[#e0eaff] transition-all duration-300 relative group"
+            >
+              Features
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#e0eaff] group-hover:w-full transition-all duration-300"></span>
+            </a>
+            <a
+              href="#platforms"
+              className="text-[#fefdf5] hover:text-[#e0eaff] transition-all duration-300 relative group"
+            >
+              Platforms
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#e0eaff] group-hover:w-full transition-all duration-300"></span>
+            </a>
+            <a
+              href="#sdg"
+              className="text-[#fefdf5] hover:text-[#e0eaff] transition-all duration-300 relative group"
+            >
+              SDG Impact
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#e0eaff] group-hover:w-full transition-all duration-300"></span>
+            </a>
+            <a
+              href="#download"
+              className="text-[#fefdf5] hover:text-[#e0eaff] transition-all duration-300 relative group"
+            >
+              Download App
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#e0eaff] group-hover:w-full transition-all duration-300"></span>
+            </a>
           </div>
 
           {/* Desktop CTA */}
@@ -169,10 +191,10 @@ export function Navigation() {
               SDG Impact
             </a>
             <a
-              href="#waitlist"
+              href="#download"
               className="block text-[#fefdf5] hover:text-[#e0eaff] py-2 transition-colors duration-300"
             >
-              Join Waitlist
+              Download App
             </a>
 
             <div className="pt-4 border-t border-[#e0eaff]/10">

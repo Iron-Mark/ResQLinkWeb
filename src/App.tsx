@@ -4,7 +4,7 @@ import { FeaturesShowcase } from "./components/FeaturesShowcase";
 import { AITriageFlow } from "./components/AITriageFlow";
 import { PlatformOverview } from "./components/PlatformOverview";
 import { SDGSection } from "./components/SDGSection";
-import { WaitlistSection } from "./components/WaitlistSection";
+import { DownloadAppSection } from "./components/DownloadAppSection";
 import AchievementSection from "./components/Achievements";
 import { DashboardPreview } from "./components/DashboardPreview";
 import { useEffect } from "react";
@@ -45,8 +45,8 @@ export default function App() {
         <SDGSection />
       </section>
 
-      {/* Waitlist Section */}
-      <WaitlistSection />
+      {/* Download App Section */}
+      <DownloadAppSection />
 
       {/* Contact Section */}
       <section
