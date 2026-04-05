@@ -4,20 +4,15 @@ import {
   Menu,
   X,
   FacebookIcon,
-  Users,
-  AlertTriangle,
-  Building2,
   Phone,
-  FlaskConical,
+  Monitor,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import resqLinkLogo from '../assets/logos/resqlink-android-icon-adaptive.png';
-import { useDemoMode } from "../context/DemoModeContext";
 
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
-  const { isDemoActive, toggleDemo } = useDemoMode();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -110,23 +105,15 @@ export function Navigation() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            {/* Demo Mode toggle — scroll to dashboard section and activate */}
-            <button
-              onClick={() => {
-                toggleDemo();
-                const el = document.getElementById("dashboard");
-                if (el) el.scrollIntoView({ behavior: "smooth" });
-              }}
-              title={isDemoActive ? "Exit Demo Mode" : "Activate Demo Mode"}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 border ${
-                isDemoActive
-                  ? "border-green-400/60 bg-green-400/10 text-green-300 animate-pulse"
-                  : "border-[#e0eaff]/15 bg-transparent text-[#e0eaff]/30 hover:text-[#e0eaff]/60 hover:border-[#e0eaff]/30"
-              }`}
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-[#e0eaff] bg-[#e0eaff]/10 border-[#e0eaff]/30 hover:border-[#e0eaff]/60 hover:bg-[#e0eaff]/20 rounded-full px-5 cursor-pointer"
+              onClick={() => window.open("https://web.resqlink.org/", "_blank")}
             >
-              <FlaskConical className="h-3 w-3" />
-              {isDemoActive ? "DEMO ON" : "Demo"}
-            </button>
+              <Monitor className="h-4 w-4 mr-2" />
+              Open Web App
+            </Button>
 
             <Button
               variant="outline"
@@ -197,34 +184,17 @@ export function Navigation() {
               Download App
             </a>
 
-            <div className="pt-4 border-t border-[#e0eaff]/10">
-              <div className="space-y-2 mb-4">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="w-full text-[#fefdf5] border-[#e0eaff]/30 hover:bg-[#e0eaff]/10"
-                >
-                  <Users className="h-4 w-4 mr-1" />
-                  Citizen Portal
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="w-full text-[#fefdf5] border-[#e0eaff]/30 hover:bg-[#e0eaff]/10"
-                >
-                  <AlertTriangle className="h-4 w-4 mr-1" />
-                  Rescuer Dashboard
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="w-full text-[#fefdf5] border-[#e0eaff]/30 hover:bg-[#e0eaff]/10"
-                >
-                  <Building2 className="h-4 w-4 mr-1" />
-                  LGU Command Center
-                </Button>
-              </div>
-              <Button className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white shadow-lg">
+            <div className="pt-4 border-t border-[#e0eaff]/10 space-y-2">
+              <Button
+                variant="outline"
+                size="sm"
+                className="w-full text-[#e0eaff] bg-[#e0eaff]/10 border-[#e0eaff]/30 hover:bg-[#e0eaff]/20 cursor-pointer"
+                onClick={() => window.open("https://web.resqlink.org/", "_blank")}
+              >
+                <Monitor className="h-4 w-4 mr-1" />
+                Open Web App
+              </Button>
+              <Button className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white shadow-lg cursor-pointer">
                 <Phone className="h-4 w-4 mr-1" />
                 Emergency Hotline
               </Button>
