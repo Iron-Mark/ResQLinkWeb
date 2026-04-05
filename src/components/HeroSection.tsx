@@ -1,6 +1,6 @@
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
-import { ArrowRight, Download, Zap, Shield, Globe } from "lucide-react";
+import { Download, Zap, Shield, Globe, Monitor } from "lucide-react";
 
 export function HeroSection() {
   return (
@@ -43,6 +43,14 @@ export function HeroSection() {
             >
               Download App
               <Download className="h-5 w-5 ml-2" />
+            </Button>
+            <Button
+              size="lg"
+              onClick={() => window.open("https://web.resqlink.org/", "_blank")}
+              className="bg-[#e0eaff]/10 hover:bg-[#e0eaff]/20 text-[#e0eaff] border border-[#e0eaff]/30 hover:border-[#e0eaff]/60 shadow-xl transition-all duration-300 px-8 py-4 text-lg rounded-2xl backdrop-blur-sm"
+            >
+              Open Web App
+              <Monitor className="h-5 w-5 ml-2" />
             </Button>
           </div>
 

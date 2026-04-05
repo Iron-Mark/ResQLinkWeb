@@ -7,6 +7,7 @@ import {
   Zap,
   Globe,
   ArrowRight,
+  Monitor,
 } from "lucide-react";
 
 const features = [
@@ -58,24 +59,19 @@ export function DownloadAppSection() {
           {/* Download CTA */}
           <div className="text-center lg:text-left flex flex-col gap-6">
             <div className="flex flex-col gap-4">
+              {/* Download APK button */}
               <div className="relative group">
-                {/* Animated background glow */}
                 <div className="absolute -inset-4 bg-gradient-to-r from-red-500/20 via-blue-500/20 to-purple-500/20 rounded-3xl blur-xl opacity-75 group-hover:opacity-100 transition-opacity duration-500 animate-pulse pointer-events-none"></div>
-
-                {/* Main download button */}
                 <Button
                   onClick={() =>
                     window.open(
-                      "https://play.google.com/store/apps/details?id=org.resqlink.app",
+                      "https://drive.google.com/open?id=1-dKhWDNAa9fW0pK6UyLdinbitGvq-Px3&usp=drive_fs",
                       "_blank"
                     )
                   }
                   className="relative w-full bg-gradient-to-r from-red-500 via-blue-500 to-purple-500 hover:from-red-600 hover:via-blue-600 hover:to-purple-600 text-white border-0 shadow-2xl hover:shadow-red-500/25 transition-all duration-500 px-12 py-8 text-2xl rounded-xl group-hover:scale-105 transform font-bold tracking-wide overflow-hidden"
                 >
-                  {/* Animated shimmer effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-
-                  {/* Button content */}
                   <div className="relative z-10 flex items-center justify-center gap-4">
                     <Smartphone className="h-8 w-8 group-hover:rotate-12 transition-transform duration-300" />
                     <span>Download for Android</span>
@@ -83,6 +79,16 @@ export function DownloadAppSection() {
                   </div>
                 </Button>
               </div>
+
+              {/* Web app button */}
+              <Button
+                onClick={() => window.open("https://web.resqlink.org/", "_blank")}
+                className="w-full bg-[#e0eaff]/10 hover:bg-[#e0eaff]/20 text-[#e0eaff] border border-[#e0eaff]/30 hover:border-[#e0eaff]/60 shadow-xl transition-all duration-300 px-12 py-6 text-lg rounded-xl font-semibold backdrop-blur-sm"
+              >
+                <Monitor className="h-6 w-6 mr-3" />
+                Open Web App
+                <ArrowRight className="h-5 w-5 ml-3" />
+              </Button>
             </div>
 
             {/* Supporting text */}
