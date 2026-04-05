@@ -135,7 +135,7 @@ export function Navigation() {
               variant="outline"
               size="sm"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-[#fefdf5] border-[#e0eaff]/30 hover:bg-[#e0eaff]/10"
+              className="text-[#fefdf5] bg-transparent border-[#e0eaff]/30 hover:bg-[#e0eaff]/10 hover:text-[#fefdf5]"
             >
               {isMenuOpen ? (
                 <X className="h-4 w-4" />
