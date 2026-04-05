@@ -56,7 +56,7 @@ export function Navigation() {
             </div>
             <div className="flex flex-col">
               <span className="text-[#fefdf5] font-bold text-xl tracking-tight leading-none">
-                ResQLink
+                <span style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif" }}>Res</span><span style={{ fontFamily: "'IBM Plex Mono', monospace" }}>Q</span><span style={{ fontFamily: "'Atkinson Hyperlegible', sans-serif" }}>Link</span>
               </span>
               <span className="text-[10px] text-[#e0eaff]/50 font-medium tracking-[0.2em] uppercase mt-1">
                 Emergency Management

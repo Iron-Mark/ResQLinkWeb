@@ -4,34 +4,22 @@ import infoTechLogo from "../assets/infotechlogo.png";
 
 export default function AchievementSection() {
   return (
-    <div className="relative h-80 bg-black overflow-hidden">
-      {/* Background photos */}
-      <img
-        className="absolute left-1/2 -translate-x-1/2 -top-40 -rotate-3 opacity-60"
-        src={photo1}
-        alt=""
-      />
-      <img
-        className="absolute bottom-80 scale-90 left-[60%] rotate-3 opacity-60"
-        src={photo2}
-        alt=""
-      />
-      <img
-        className="absolute bottom-20 right-[25%] scale-50 -rotate-3 opacity-60"
-        src={photo1}
-        alt=""
-      />
-      <div className="absolute inset-0 bg-black/50" />
+    <div className="relative bg-black overflow-hidden" style={{ height: 'clamp(14rem, 22vw, 32rem)' }}>
+      {/* Background photos — side by side, 50% each */}
+      <div className="absolute inset-0 flex">
+        <img className="w-1/2 h-full object-cover" style={{ objectPosition: 'center 67%' }} src={photo1} alt="" />
+        <img className="w-1/2 h-full object-cover object-center" src={photo2} alt="" />
+      </div>
+      <div className="absolute inset-0 bg-black/55" />
 
       {/* Content */}
-      <div className="relative z-10 w-full h-full flex flex-col items-center justify-center gap-3">
+      <div className="relative z-10 w-full h-full flex flex-col items-center justify-center gap-2 sm:gap-3 px-4">
         <img
           src={infoTechLogo}
-          className="max-w-[280px] w-full h-auto object-contain object-center"
-          style={{ imageRendering: "auto" }}
+          className="max-w-[160px] sm:max-w-[220px] md:max-w-[280px] w-full h-auto object-contain object-center"
           alt="InfoTech logo"
         />
-        <span className="bg-linear-to-r from-[#fefdf5] to-[#e0eaff] bg-clip-text text-transparent font-bold text-lg text-center px-4">
+        <span className="bg-linear-to-r from-[#fefdf5] to-[#e0eaff] bg-clip-text text-transparent font-bold text-sm sm:text-base md:text-lg text-center max-w-xs sm:max-w-sm md:max-w-none">
           Android App Development: Productivity Champion
         </span>
       </div>
