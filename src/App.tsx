@@ -18,7 +18,7 @@ export default function App() {
   }, []);
   return (
     <DemoModeProvider>
-    <div className="w-screen overflow-hidden">
+    <div className="w-full overflow-x-hidden">
       <Navigation />
 
       {/* Hero Section */}
