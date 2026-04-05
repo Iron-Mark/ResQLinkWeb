@@ -1,6 +1,6 @@
-import photo1 from '../assets/20251013_172614.jpg';
-import photo2 from '../assets/photo_2025-10-14_07-26-26.jpg';
-import infoTechLogo from '../assets/infotechlogo.png';
+import photo1 from "../assets/20251013_172614.jpg";
+import photo2 from "../assets/photo_2025-10-14_07-26-26.jpg";
+import infoTechLogo from "../assets/infotechlogo.png";
 
 export default function AchievementSection() {
   return (
@@ -27,10 +27,11 @@ export default function AchievementSection() {
       <div className="relative z-10 w-full h-full flex flex-col items-center justify-center gap-3">
         <img
           src={infoTechLogo}
-          className="w-28 h-28 object-contain"
+          className="max-w-[280px] w-full h-auto object-contain object-center"
+          style={{ imageRendering: "auto" }}
           alt="InfoTech logo"
         />
-        <span className="bg-gradient-to-r from-[#fefdf5] to-[#e0eaff] bg-clip-text text-transparent font-bold text-lg text-center px-4">
+        <span className="bg-linear-to-r from-[#fefdf5] to-[#e0eaff] bg-clip-text text-transparent font-bold text-lg text-center px-4">
           Android App Development: Productivity Champion
         </span>
       </div>
