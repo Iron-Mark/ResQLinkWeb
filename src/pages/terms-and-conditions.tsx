@@ -28,7 +28,7 @@ export default function TermsAndConditions() {
                 <div className="flex items-center gap-2 mt-1 text-sm text-[#e0eaff]/70">
                   <span>Last updated:</span>
                   <span className="inline-flex items-center px-2 py-0.5 rounded-md text-sm bg-[#e0eaff]/10 text-[#e0eaff]">
-                    October 19, 2025
+                    April 6, 2026
                   </span>
                 </div>
               </div>
@@ -113,21 +113,20 @@ export default function TermsAndConditions() {
               We reserve the right to remove you from the waitlist or terminate
               your access to the beta program at any time, for any reason,
               without notice. You may request the removal of your email address
-              from our lists by contacting us at [Insert Contact Email Address].
+              from our lists by contacting us at jvillarosa.a12240987@umak.edu.ph.
             </p>
 
             <h2>6. Governing Law</h2>
             <p>
               These Terms shall be governed by and construed in accordance with
-              the laws of [Insert Jurisdiction, e.g., Republic of the
-              Philippines].
+              the laws of the Republic of the Philippines.
             </p>
 
             <hr className="my-6 border-[#e0eaff]/8" />
 
             <p className="text-sm text-[#e0eaff]/60">
               If you have questions about these Terms, please contact us at
-              [Insert Contact Email Address].
+              jvillarosa.a12240987@umak.edu.ph.
             </p>
           </article>
         </div>

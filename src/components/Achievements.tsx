@@ -12,12 +12,12 @@ export default function AchievementSection() {
           alt=""
         />
         <img
-          className="absolute bottom-80 scale-90 left-150 rotate-3"
+          className="absolute bottom-80 scale-90 left-[60%] rotate-3"
           src={photo2}
           alt=""
         />
         <img
-          className="absolute bottom-20 right-100 scale-50 -rotate-3 "
+          className="absolute bottom-20 right-[25%] scale-50 -rotate-3 "
           src={photo1}
           alt=""
         />
