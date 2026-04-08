@@ -151,6 +151,9 @@
     }
   ],
   "events": [
+    { "atSecond": 1,   "type": "incident_spawn",   "incidentId": "INC-001" },
+    { "atSecond": 2,   "type": "incident_spawn",   "incidentId": "INC-002" },
+    { "atSecond": 3,   "type": "incident_spawn",   "incidentId": "INC-003" },
     { "atSecond": 30,  "type": "incident_spawn",   "incidentId": "INC-004" },
     { "atSecond": 60,  "type": "incident_spawn",   "incidentId": "INC-005" },
     { "atSecond": 75,  "type": "status_change",    "incidentId": "INC-003", "newStatus": "Resolved" },
