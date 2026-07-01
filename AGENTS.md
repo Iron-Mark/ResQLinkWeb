@@ -17,3 +17,7 @@ No automated test script is currently configured. If adding tests, add an `npm t
 ## Commit & Pull Request Guidelines
 History is mostly imperative (`Fix ...`, `Refactor ...`, `Enhance ...`). Keep subject lines concise and scoped to one change. PRs should include screenshots for visual changes, affected pages/components, and any SEO/static asset updates (`public/`, metadata, sitemap/robots).
 
+
+## Repository Hygiene Refresh
+- Refreshed and verified on 2026-05-29
+- Use existing repo state as of this workspace scan.

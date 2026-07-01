@@ -3,3 +3,6 @@ node_modules
 .env
 .env.dev
 .env.prod
+build/
+vite-*.out.log
+vite-*.err.log
